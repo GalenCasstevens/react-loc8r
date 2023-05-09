@@ -34,7 +34,7 @@ const reviewSchema = mongoose.Schema({
 	},
 });
 
-const locationSchema = new mongoose.Schema({
+const locationSchema = mongoose.Schema({
 	name: {
 		type: String,
 		required: true,
@@ -56,4 +56,4 @@ const locationSchema = new mongoose.Schema({
 });
 locationSchema.index({ coords: '2dsphere' });
 
-mongoose.model('Location', locationSchema);
+module.exports = mongoose.model('Location', locationSchema);
