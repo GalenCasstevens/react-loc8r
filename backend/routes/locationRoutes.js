@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
-const { createLocation } = require('../controllers/locationController');
+const {
+	getLocations,
+	createLocation,
+} = require('../controllers/locationController');
 
-router.route('/').post(createLocation);
+router.route('/').get(getLocations).post(createLocation);
 
 module.exports = router;

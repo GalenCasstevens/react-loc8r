@@ -3,7 +3,32 @@ const Location = require('../models/locationModel');
 // @desc    Get locations by distance
 // @route   GET /api/locations
 // @access  Public
-const getLocations = (req, res) => {};
+const getLocations = async (req, res) => {
+	const lng = parseFloat(req.query.lng);
+	const lat = parseFloat(req.query.lat);
+	const maxDistance = parseFloat(req.query.maxDistance);
+
+	if ((!lng && lng !== 0) || (!lat && lat !== 0)) {
+		return res
+			.status(404)
+			.json({ message: 'lng and lat query parameters are required' });
+	}
+
+	const near = {
+		type: 'Point',
+		coordinates: [lng, lat],
+	};
+
+	const geoOptions = {
+		distanceField: 'distance.calculated',
+		key: 'coords',
+		spherical: true,
+	};
+
+	const locations = await Location.find({});
+
+	res.status(200).json(locations);
+};
 
 // @desc    Create location
 // @route   POST /api/locations
@@ -32,4 +57,5 @@ const createLocation = async (req, res) => {
 
 module.exports = {
 	createLocation,
+	getLocations,
 };
