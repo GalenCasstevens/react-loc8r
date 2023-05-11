@@ -1,9 +1,11 @@
+const asyncHandler = require('express-async-handler');
+
 const Location = require('../models/locationModel');
 
 // @desc    Get locations by distance
 // @route   GET /api/locations
 // @access  Public
-const getLocations = async (req, res) => {
+const getLocations = asyncHandler(async (req, res) => {
 	const lng = parseFloat(req.query.lng);
 	const lat = parseFloat(req.query.lat);
 	const maxDistance = parseFloat(req.query.maxDistance);
@@ -50,12 +52,26 @@ const getLocations = async (req, res) => {
 	} catch (err) {
 		res.status(404).json(err);
 	}
-};
+});
+
+// @desc    Get location
+// @route   GET /api/locations/:id
+// @access  Public
+const getLocation = asyncHandler(async (req, res) => {
+	const location = await Location.findById(req.params.id);
+
+	if (!location) {
+		res.status(404);
+		throw new Error('Location not found');
+	}
+
+	res.status(200).json(location);
+});
 
 // @desc    Create location
 // @route   POST /api/locations
 // @access  Public
-const createLocation = async (req, res) => {
+const createLocation = asyncHandler(async (req, res) => {
 	const { name, openingTimes } = req.body;
 
 	if (!name) {
@@ -75,9 +91,10 @@ const createLocation = async (req, res) => {
 	});
 
 	res.status(201).json(location);
-};
+});
 
 module.exports = {
-	createLocation,
 	getLocations,
+	getLocation,
+	createLocation,
 };
