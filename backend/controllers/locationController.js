@@ -23,11 +23,33 @@ const getLocations = async (req, res) => {
 		distanceField: 'distance.calculated',
 		key: 'coords',
 		spherical: true,
+		maxDistance: maxDistance,
 	};
 
-	const locations = await Location.find({});
-
-	res.status(200).json(locations);
+	try {
+		const results = await Location.aggregate([
+			{
+				$geoNear: {
+					near,
+					...geoOptions,
+				},
+			},
+			{ $limit: 5 },
+		]);
+		const locations = results.map((result) => {
+			return {
+				_id: result._id,
+				name: result.name,
+				address: result.address,
+				rating: result.rating,
+				facilities: result.facilities,
+				distance: `${result.distance.calculated.toFixed()}`,
+			};
+		});
+		res.status(200).json(locations);
+	} catch (err) {
+		res.status(404).json(err);
+	}
 };
 
 // @desc    Create location
