@@ -14,7 +14,7 @@ const getReview = asyncHandler(async (req, res) => {
 	}
 
 	if (location.reviews && location.reviews.length > 0) {
-		const review = location.reviews.id(req.params.reviewid);
+		const review = location.reviews.id(req.params.reviewId);
 
 		if (!review) {
 			res.status(404);
@@ -31,8 +31,45 @@ const getReview = asyncHandler(async (req, res) => {
 // @desc    Add review
 // @route   POST /api/locations/:locationId/reviews
 // @access  Public
-const createReview = asyncHandler(async (req, res) => {});
+const addReview = asyncHandler(async (req, res) => {
+	const location = await Location.findById(req.params.locationId);
+
+	if (!location) {
+		res.status(404);
+		throw new Error('Location not found');
+	}
+
+	const { author, rating, reviewText } = req.body;
+	location.reviews.push({
+		author,
+		rating,
+		reviewText,
+	});
+	await location.save();
+
+	updateAverageRating(location._id);
+	const review = location.reviews.slice(-1).pop();
+	res.status(201).json(review);
+});
+
+const updateAverageRating = asyncHandler(async (locationId) => {
+	const location = await Location.findById(locationId);
+
+	if (location.reviews && location.reviews.length > 0) {
+		const count = location.reviews.length;
+		const total = location.reviews.reduce((acc, { rating }) => {
+			return acc + rating;
+		}, 0);
+
+		location.rating = parseInt(total / count, 10);
+		await location.save();
+	}
+});
+
+// @desc	Update review
+// @route	PUT /api/locations/:locationid/reviews/:reviewId
 
 module.exports = {
 	getReview,
+	addReview,
 };

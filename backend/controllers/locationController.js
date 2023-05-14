@@ -72,7 +72,7 @@ const getLocation = asyncHandler(async (req, res) => {
 // @route   POST /api/locations
 // @access  Public
 const createLocation = asyncHandler(async (req, res) => {
-	const { name, openingTimes } = req.body;
+	const { name } = req.body;
 
 	if (!name) {
 		res.status(400);
@@ -87,10 +87,17 @@ const createLocation = asyncHandler(async (req, res) => {
 			type: 'Point',
 			coordinates: [parseFloat(req.body.lng), parseFloat(req.body.lat)],
 		},
-		openingTimes: openingTimes,
+		openingTimes: req.body.openingTimes,
 	});
 
 	res.status(201).json(location);
+});
+
+// @desc 	Update location
+// @route 	PUT /api/locations/:id
+// @access	Public
+const updateLocation = asyncHandler(async (req, res) => {
+	const location = await Location.findById(req.params.id);
 });
 
 module.exports = {
