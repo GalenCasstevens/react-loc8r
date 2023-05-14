@@ -5,7 +5,7 @@ const Location = require('../models/locationModel');
 // @desc    Get locations by distance
 // @route   GET /api/locations
 // @access  Public
-const getLocations = asyncHandler(async (req, res) => {
+const getLocationsByDistance = asyncHandler(async (req, res) => {
 	const lng = parseFloat(req.query.lng);
 	const lat = parseFloat(req.query.lat);
 	const maxDistance = parseFloat(req.query.maxDistance);
@@ -98,10 +98,47 @@ const createLocation = asyncHandler(async (req, res) => {
 // @access	Public
 const updateLocation = asyncHandler(async (req, res) => {
 	const location = await Location.findById(req.params.id);
+	const { name } = req.body;
+
+	if (!location) {
+		res.status(404);
+		throw new Error('Location not found');
+	}
+
+	if (!name) {
+		res.status(400);
+		throw new Error('Please add a name');
+	}
+
+	const updatedLocation = await Location.findByIdAndUpdate(
+		req.params.id,
+		req.body,
+		{ new: true }
+	);
+
+	res.status(200).json(updatedLocation);
+});
+
+// @desc	Delete location
+// @route	DELETE /api/locations/:id
+// @access	Public
+const deleteLocation = asyncHandler(async (req, res) => {
+	const location = await Location.findById(req.params.id);
+
+	if (!location) {
+		res.status(404);
+		throw new Error('Location not found');
+	}
+
+	await Location.deleteOne({ _id: location._id });
+
+	res.status(200).json({ success: true });
 });
 
 module.exports = {
-	getLocations,
+	getLocationsByDistance,
 	getLocation,
 	createLocation,
+	updateLocation,
+	deleteLocation,
 };
