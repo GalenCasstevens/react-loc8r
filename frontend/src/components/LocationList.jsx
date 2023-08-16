@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import LocationData from '../data/LocationData';
 import LocationListItem from '../components/LocationListItem';
@@ -13,11 +14,13 @@ function LocationList() {
 
 	if (locations && locations !== null) {
 		return (
-			<div className="card">
-				{locations.map((location) => (
-					<LocationListItem location={location} />
-				))}
-			</div>
+			<Card className="locations-card">
+				<ListGroup>
+					{locations.map((location) => (
+						<LocationListItem location={location} />
+					))}
+				</ListGroup>
+			</Card>
 		);
 	}
 

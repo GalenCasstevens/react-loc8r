@@ -12,7 +12,6 @@ function App() {
 			<Router>
 				<Navigation />
 				<Container>
-					<Header title="Loc8r" strapline="Find a place to work with wifi!" />
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/locations/:id" element={<Details />} />

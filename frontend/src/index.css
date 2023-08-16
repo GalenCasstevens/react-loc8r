@@ -54,13 +54,58 @@ legend {
 	color: white;
 }
 
-.card {
-	background-color: #469ea8;
+.list-name {
+	color: #f7bc65;
 }
 
-.card-block {
-	border: #a2ced3 0.5px solid;
-	padding: 1rem;
+.list-rating {
+	color: #aaa;
+	font-size: 19px;
+}
+
+.card {
+	/* border: solid 2px #ad1d28 !important; */
+	margin-bottom: 1rem;
+}
+
+.card.details-card {
+	border-color: #ad1d28;
+}
+
+.card.locations-card {
+	border-color: #a2ced3;
+}
+
+.card .address {
+	color: #fff;
+}
+
+.card .list-group-item {
+	background-color: #469ea8 !important;
+	border-color: #a2ced3 !important;
+	padding-top: 10px;
+	padding-bottom: 12px;
+}
+
+/* .card-title.list-group-item {
+	background-color: #ad1d28 !important;
+} */
+
+.card-title h5 {
+	padding: 10px;
+}
+
+.card-title {
+	background-color: #ad1d28;
+	padding: 10px;
+}
+
+.facilities .card-content {
+	padding: 0px 10px 10px 10px;
+}
+
+.card-content {
+	padding: 2px 10px 2px 10px;
 }
 
 .banner {
@@ -90,6 +135,7 @@ legend {
 span.badge.bg-primary {
 	background-color: #ad1d28 !important;
 	border-color: #911821 !important;
+	margin-top: 4px;
 }
 
 h4 a,
@@ -111,12 +157,23 @@ h1 small {
 	color: #aaa;
 }
 
-.card .address {
+.opening-times > .list-group > .list-group-item,
+.facilities > .list-group > .list-group-item {
 	color: #fff;
+	border-style: none;
+	padding: 0px;
+}
+
+.opening-times > .list-group > .list-group-item {
+	padding: 0px;
 }
 
 .address {
 	margin-bottom: 0.5rem;
+}
+
+.details-address {
+	font-size: 1.02em;
 }
 
 .facilities span.badge {

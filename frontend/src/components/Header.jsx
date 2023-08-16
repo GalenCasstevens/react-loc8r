@@ -1,15 +1,17 @@
 import React from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 function Header(props) {
 	return (
-		<div className="row banner">
-			<div className="col-12">
+		<Row className="banner">
+			<Col>
 				<h1>
 					{props.title}&nbsp;
 					<small className="banner-strapline">{props.strapline}</small>
 				</h1>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	);
 }
 
