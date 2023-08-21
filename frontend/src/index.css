@@ -64,32 +64,33 @@ legend {
 }
 
 .card {
-	/* border: solid 2px #ad1d28 !important; */
 	margin-bottom: 1rem;
 }
 
-.card.details-card {
-	border-color: #ad1d28;
+.card.locations-card {
+	margin-top: 1.5em;
+	border: none;
 }
 
-.card.locations-card {
-	border-color: #a2ced3;
+.locations-card .list-group-item {
+	padding-top: 10px;
+	padding-bottom: 12px;
+	background-color: #469ea8 !important;
+	border-color: #ad1d28 !important;
+}
+
+.card.details-card {
+	border-color: #ad1d28 !important;
+}
+
+.details-card .list-group-item {
+	background-color: #469ea8 !important;
+	border-color: #ad1d28;
 }
 
 .card .address {
 	color: #fff;
 }
-
-.card .list-group-item {
-	background-color: #469ea8 !important;
-	border-color: #a2ced3 !important;
-	padding-top: 10px;
-	padding-bottom: 12px;
-}
-
-/* .card-title.list-group-item {
-	background-color: #ad1d28 !important;
-} */
 
 .card-title h5 {
 	padding: 10px;
@@ -98,6 +99,28 @@ legend {
 .card-title {
 	background-color: #ad1d28;
 	padding: 10px;
+	color: #fff;
+}
+
+.customer-reviews .card-title {
+	margin-bottom: 0px;
+}
+
+.inner-floating-right {
+	vertical-align: middle;
+	position: relative;
+}
+
+.outer-floating-right {
+	line-height: 15px;
+	position: absolute;
+	right: 5px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.map-title {
+	margin-bottom: 0;
 }
 
 .facilities .card-content {
@@ -111,7 +134,7 @@ legend {
 .banner {
 	margin-top: 4em;
 	border-bottom: 1px solid #469ea8;
-	margin-bottom: 1.5em;
+	margin-bottom: 1em;
 	padding-bottom: 0.5em;
 }
 
@@ -164,7 +187,8 @@ h1 small {
 	padding: 0px;
 }
 
-.opening-times > .list-group > .list-group-item {
+.opening-times > .list-group > .list-group-item,
+.customer-reviews > .list-group > .list-group-item {
 	padding: 0px;
 }
 
@@ -199,4 +223,8 @@ a:hover {
 	height: 3px;
 	background-color: #fff;
 	margin: 6px 0;
+}
+
+.details-card h3 {
+	font-size: 1.5em;
 }

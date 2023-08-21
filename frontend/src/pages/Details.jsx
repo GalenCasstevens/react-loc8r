@@ -9,6 +9,7 @@ import Rating from '../components/Rating';
 import Map from '../components/Map';
 import LocationData from '../data/LocationData';
 import Badge from 'react-bootstrap/esm/Badge';
+import Button from 'react-bootstrap/Button';
 
 function Details() {
 	const { id } = useParams();
@@ -31,7 +32,7 @@ function Details() {
 						<Card className="details-card opening-times">
 							<ListGroup>
 								<ListGroup.Item>
-									<h5 className="card-title">Opening hours</h5>
+									<h3 className="card-title">Opening hours</h3>
 								</ListGroup.Item>
 								{location.openingTimes &&
 									location.openingTimes.length > 0 &&
@@ -53,7 +54,7 @@ function Details() {
 						<Card className="details-card facilities">
 							<ListGroup>
 								<ListGroup.Item>
-									<h5 className="card-title">Facilities</h5>
+									<h3 className="card-title">Facilities</h3>
 									<div className="card-content">
 										{location.facilities &&
 											location.facilities.length > 0 &&
@@ -66,9 +67,27 @@ function Details() {
 						</Card>
 					</Col>
 					<Col md={6} className="location-map">
-						<Card>
-							<h5 className="card-title">Location map</h5>
+						<Card className="details-card">
+							<h3 className="card-title map-title">Location map</h3>
 							<Map />
+						</Card>
+					</Col>
+				</Row>
+				<Row>
+					<Col md={12}>
+						<Card className="details-card customer-reviews">
+							<ListGroup>
+								<ListGroup.Item>
+									<div className="outer-floating-right">
+										<div className="inner-floating-right">
+											<Button className="add-review-btn" variant="light">
+												Add review
+											</Button>
+										</div>
+									</div>
+									<h3 className="card-title">Customer reviews</h3>
+								</ListGroup.Item>
+							</ListGroup>
 						</Card>
 					</Col>
 				</Row>
