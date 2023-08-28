@@ -19,7 +19,15 @@ const LocationData = {
 					_id: '645c3c8b1e9e260543e50163',
 				},
 			],
-			reviews: [],
+			reviews: [
+				{
+					author: 'Donald',
+					rating: 2,
+					reviewText: 'Could be better.',
+					_id: '6460374ad6ca4e671ee6e54d',
+					createdOn: '2023-05-14T01:20:10.570+00:00',
+				},
+			],
 		},
 		{
 			_id: '648f946ed9aac3d31e0e8e59',

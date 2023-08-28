@@ -142,11 +142,14 @@ legend {
 	font-size: 0.75em;
 }
 
+.row.review-header {
+	margin: 0;
+	padding: 10px;
+}
+
 .review-header {
+	color: #fff;
 	background-color: #31727a;
-	padding-top: 0.5em;
-	padding-bottom: 0.5em;
-	margin-bottom: 0.5em;
 }
 
 .review {
@@ -227,4 +230,14 @@ a:hover {
 
 .details-card h3 {
 	font-size: 1.5em;
+}
+
+form {
+	color: #fff;
+	padding: 10px;
+}
+
+#submit-review-btn {
+	margin-left: 10px;
+	background-color: #1cd100;
 }
