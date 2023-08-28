@@ -7,11 +7,16 @@ function Review({ review }) {
 	return (
 		<>
 			<Row className="review-header">
-				<Col className="no-gutters">
+				<Col className="review-header-col">
 					<Rating rating={review.rating} style={{ color: '#fff' }} />
 					&nbsp;&nbsp;
 					<span>{review.author}</span>&nbsp;&nbsp;
 					<small>{dateFormat(review.createdOn, 'paddedShortDate')}</small>
+				</Col>
+			</Row>
+			<Row className="review-body">
+				<Col>
+					<p>{review.reviewText}</p>
 				</Col>
 			</Row>
 		</>

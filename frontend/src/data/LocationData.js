@@ -27,6 +27,20 @@ const LocationData = {
 					_id: '6460374ad6ca4e671ee6e54d',
 					createdOn: '2023-05-14T01:20:10.570+00:00',
 				},
+				{
+					author: 'Roger',
+					rating: 5,
+					reviewText: 'Excellent place to get a coffee and get some work done!',
+					_id: '6460374ad6ca4e671ee6e54d',
+					createdOn: '2023-05-14T01:20:10.570+00:00',
+				},
+				{
+					author: 'Kelly',
+					rating: 4,
+					reviewText: 'Nice place, coffee was a bit too bitter',
+					_id: '6460374ad6ca4e671ee6e54d',
+					createdOn: '2023-05-14T01:20:10.570+00:00',
+				},
 			],
 		},
 		{

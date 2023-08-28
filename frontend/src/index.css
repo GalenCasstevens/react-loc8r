@@ -144,12 +144,23 @@ legend {
 
 .row.review-header {
 	margin: 0;
-	padding: 10px;
 }
 
 .review-header {
 	color: #fff;
 	background-color: #31727a;
+}
+
+.review-header-col {
+	padding: 10px;
+	padding-left: 15px;
+}
+
+.row.review-body p {
+	color: #fff;
+	padding: 5px;
+	padding-left: 15px;
+	padding-right: 15px;
 }
 
 .review {

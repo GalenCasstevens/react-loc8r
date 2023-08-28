@@ -25,6 +25,12 @@ function Details() {
 		setLocation(LocationData.locations.find((loc) => loc._id === id));
 	}, []);
 
+	const getAverageRating = (reviews) => {
+		return Math.floor(
+			reviews.reduce((total, next) => total + next.rating, 0) / reviews.length
+		);
+	};
+
 	const onChange = (e) => {
 		setLocationName(e.target.value);
 	};
@@ -43,7 +49,9 @@ function Details() {
 							<Col md={6}>
 								<p className="rating">
 									<Rating
-										rating={location.rating}
+										rating={
+											location.reviews && getAverageRating(location.reviews)
+										}
 										style={{ color: '#f7bc65' }}
 									/>
 								</p>
