@@ -1,13 +1,14 @@
 {
 	"name": "loc8r",
 	"version": "1.0.0",
-	"description": "Restaurant finder app",
+	"description": "Find places withm wifi to work",
 	"main": "server.js",
 	"scripts": {
 		"start": "node backend/server.js",
 		"server": "nodemon backend/server.js",
 		"client": "npm start --prefix frontend",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
+		"dev": "concurrently \"npm run server\" \"npm run client\"",
+		"build": "npm i && cd frontend && npm i && npm run build"
 	},
 	"author": "Galen Casstevens",
 	"license": "MIT",
