@@ -6,6 +6,7 @@ const Location = require('../models/locationModel');
 // @route   GET /api/locations
 // @access  Public
 const getLocationsByDistance = asyncHandler(async (req, res) => {
+	console.log('testing');
 	const lng = parseFloat(req.query.lng);
 	const lat = parseFloat(req.query.lat);
 	const maxDistance = parseFloat(req.query.maxDistance);
