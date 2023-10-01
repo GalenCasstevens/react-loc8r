@@ -22,8 +22,12 @@ function LocationListItem({ location }) {
 			</h4>
 			<p className="address">{location.address}</p>
 			<div className="facilities">
-				{location.facilities.map((facility) => {
-					return <Badge bg="danger">{facility}</Badge>;
+				{location.facilities.map((facility, index) => {
+					return (
+						<Badge key={index} bg="danger">
+							{facility}
+						</Badge>
+					);
 				})}
 			</div>
 		</ListGroup.Item>

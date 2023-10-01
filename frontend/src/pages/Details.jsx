@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { getReviews, addReview } from '../features/reviews/reviewSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { getLocation, addReview } from '../features/locations/locationSlice';
 import Header from '../components/Header';
 import Rating from '../components/Rating';
 import Review from '../components/Review';
@@ -16,25 +16,22 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Alert from 'react-bootstrap/Alert';
 
-import LocationData from '../data/LocationData';
-
 function Details() {
-	const { id } = useParams();
-	const [location, setLocation] = useState([]);
+	const { location } = useSelector((state) => state.locations);
+	const { locationId } = useParams();
 	const [formVisible, setFormVisible] = useState(false);
 	const [formError, setFormError] = useState('');
 	const [formData, setFormData] = useState({
-		name: '',
+		author: '',
 		rating: 5,
-		review: '',
+		reviewText: '',
 	});
-
-	const { name, rating, review } = formData;
+	const { author, rating, reviewText } = formData;
 
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		setLocation(LocationData.locations.find((loc) => loc._id === id));
+		dispatch(getLocation(locationId));
 	}, []);
 
 	const getAverageRating = (reviews) => {
@@ -56,19 +53,20 @@ function Details() {
 
 		if (formIsValid()) {
 			const reviewData = {
-				name,
+				author,
 				rating,
-				review,
+				reviewText,
 			};
 
-			dispatch(addReview(reviewData));
+			dispatch(addReview({ locationId, reviewData }));
+			setFormVisible(false);
 		} else {
 			setFormError('All fields required, please try again');
 		}
 	};
 
 	const formIsValid = () => {
-		if (name && rating && review) return true;
+		if (author && rating && reviewText) return true;
 		else return false;
 	};
 
@@ -96,8 +94,8 @@ function Details() {
 										</ListGroup.Item>
 										{location.openingTimes &&
 											location.openingTimes.length > 0 &&
-											location.openingTimes.map((time) => (
-												<ListGroup.Item>
+											location.openingTimes.map((time, index) => (
+												<ListGroup.Item key={index}>
 													<p className="card-content">
 														{time.days} :&nbsp;
 														{!time.closed && (
@@ -118,8 +116,10 @@ function Details() {
 											<div className="card-content">
 												{location.facilities &&
 													location.facilities.length > 0 &&
-													location.facilities.map((facility) => (
-														<Badge bg="warning">{facility}</Badge>
+													location.facilities.map((facility, index) => (
+														<Badge key={index} bg="warning">
+															{facility}
+														</Badge>
 													))}
 											</div>
 										</ListGroup.Item>
@@ -169,8 +169,8 @@ function Details() {
 																<Form.Control
 																	type="text"
 																	id="name"
-																	name="name"
-																	value={name}
+																	name="author"
+																	value={author}
 																	onChange={onChange}
 																	required
 																/>
@@ -208,8 +208,8 @@ function Details() {
 																	className="form-control"
 																	rows="5"
 																	id="review"
-																	name="review"
-																	value={review}
+																	name="reviewText"
+																	value={reviewText}
 																	onChange={onChange}
 																></textarea>
 															</Col>
@@ -237,7 +237,7 @@ function Details() {
 										{location.reviews &&
 											location.reviews.map((review) => {
 												return (
-													<ListGroup.Item>
+													<ListGroup.Item key={review._id}>
 														<Review review={review} />
 													</ListGroup.Item>
 												);

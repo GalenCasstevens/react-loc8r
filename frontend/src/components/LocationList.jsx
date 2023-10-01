@@ -1,24 +1,25 @@
-import React from 'react';
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { getLocations } from '../features/locations/locationSlice';
 import LocationListItem from '../components/LocationListItem';
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 
-import LocationData from '../data/LocationData';
-
 function LocationList() {
-	const [locations, setLocations] = useState([]);
+	const { locations } = useSelector((state) => state.locations);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
-		setLocations(LocationData.locations);
-	}, []);
+		dispatch(getLocations());
+	}, [dispatch]);
 
 	if (locations && locations !== null) {
 		return (
 			<Card className="locations-card">
 				<ListGroup>
 					{locations.map((location) => (
-						<LocationListItem location={location} />
+						<LocationListItem key={location._id} location={location} />
 					))}
 				</ListGroup>
 			</Card>

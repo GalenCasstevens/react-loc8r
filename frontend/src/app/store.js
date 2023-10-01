@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import reviewReducer from '../features/reviews/reviewSlice';
+import locationReducer from '../features/locations/locationSlice';
 
 export const store = configureStore({
 	reducer: {
-		review: reviewReducer,
+		locations: locationReducer,
 	},
 });
