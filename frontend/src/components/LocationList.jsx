@@ -12,6 +12,7 @@ function LocationList() {
 
 	useEffect(() => {
 		dispatch(getLocations());
+		console.log(locations);
 	}, [dispatch]);
 
 	if (locations && locations !== null) {
