@@ -7,11 +7,9 @@ const getLocations = async () => {
 	const lng = -81.0151;
 	const lat = 34.97988;
 	const maxDistance = 10000;
-	console.log(`${API_URL}?lng=${lng}&lat=${lat}&maxDistance=${maxDistance}`);
 	const response = await axios.get(
 		`${API_URL}?lng=${lng}&lat=${lat}&maxDistance=${maxDistance}`
 	);
-	console.log(response.data);
 	return response.data;
 };
 
