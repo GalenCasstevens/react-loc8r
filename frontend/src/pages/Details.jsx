@@ -1,25 +1,37 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
+import { useDispatch } from 'react-redux';
+import { getReviews, addReview } from '../features/reviews/reviewSlice';
 import Header from '../components/Header';
 import Rating from '../components/Rating';
 import Review from '../components/Review';
 import Map from '../components/Map';
 import Sidebar from '../components/Sidebar';
-import LocationData from '../data/LocationData';
+import Card from 'react-bootstrap/Card';
+import ListGroup from 'react-bootstrap/ListGroup';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/esm/Badge';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Alert from 'react-bootstrap/Alert';
+
+import LocationData from '../data/LocationData';
 
 function Details() {
 	const { id } = useParams();
 	const [location, setLocation] = useState([]);
 	const [formVisible, setFormVisible] = useState(false);
-	const [formError, setFormError] = useState(false);
-	const [locationName, setLocationName] = useState('');
+	const [formError, setFormError] = useState('');
+	const [formData, setFormData] = useState({
+		name: '',
+		rating: 5,
+		review: '',
+	});
+
+	const { name, rating, review } = formData;
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setLocation(LocationData.locations.find((loc) => loc._id === id));
@@ -32,11 +44,32 @@ function Details() {
 	};
 
 	const onChange = (e) => {
-		setLocationName(e.target.value);
+		setFormData((prevState) => ({
+			...prevState,
+			[e.target.name]:
+				e.target.name === 'rating' ? parseInt(e.target.value) : e.target.value,
+		}));
 	};
 
 	const onSubmit = (e) => {
-		console.log('Submitting form...');
+		e.preventDefault();
+
+		if (formIsValid()) {
+			const reviewData = {
+				name,
+				rating,
+				review,
+			};
+
+			dispatch(addReview(reviewData));
+		} else {
+			setFormError('All fields required, please try again');
+		}
+	};
+
+	const formIsValid = () => {
+		if (name && rating && review) return true;
+		else return false;
 	};
 
 	if (location && location !== null) {
@@ -122,7 +155,11 @@ function Details() {
 											<ListGroup.Item>
 												<Form onSubmit={onSubmit}>
 													<h5>Add your review</h5>
-													{formError && <div>{formError}</div>}
+													{formError && (
+														<Alert key={'danger'} variant={'danger'}>
+															{formError}
+														</Alert>
+													)}
 													<Form.Group className="mb-3">
 														<Row>
 															<Col sm={2}>
@@ -131,10 +168,11 @@ function Details() {
 															<Col sm={10}>
 																<Form.Control
 																	type="text"
-																	id="locationName"
-																	name="locationName"
+																	id="name"
+																	name="name"
+																	value={name}
 																	onChange={onChange}
-																	value={locationName}
+																	required
 																/>
 															</Col>
 														</Row>
@@ -145,7 +183,12 @@ function Details() {
 																<Form.Label>Rating</Form.Label>
 															</Col>
 															<Col sm={10} md={2}>
-																<Form.Select>
+																<Form.Select
+																	id="rating"
+																	name="rating"
+																	value={rating}
+																	onChange={onChange}
+																>
 																	<option value="5">5</option>
 																	<option value="4">4</option>
 																	<option value="3">3</option>
@@ -162,10 +205,12 @@ function Details() {
 															</Col>
 															<Col sm={10}>
 																<textarea
-																	name="review"
-																	id="review"
-																	rows="5"
 																	className="form-control"
+																	rows="5"
+																	id="review"
+																	name="review"
+																	value={review}
+																	onChange={onChange}
 																></textarea>
 															</Col>
 														</Row>

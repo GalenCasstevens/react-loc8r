@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Badge from 'react-bootstrap/Badge';
 import Rating from '../components/Rating';
+import Badge from 'react-bootstrap/Badge';
 import ListGroup from 'react-bootstrap/ListGroup';
 
 function LocationListItem({ location }) {
