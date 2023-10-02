@@ -8,14 +8,16 @@ import About from './pages/About';
 function App() {
 	return (
 		<>
-			<Navigation />
-			<Container>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-					<Route path="/locations/:locationId" element={<Details />} />
-					<Route path="/about" element={<About />} />
-				</Routes>
-			</Container>
+			<Router>
+				<Navigation />
+				<Container>
+					<Routes>
+						<Route exact path="/" element={<Home />} />
+						<Route path="/locations/:locationId" element={<Details />} />
+						<Route path="/about" element={<About />} />
+					</Routes>
+				</Container>
+			</Router>
 		</>
 	);
 }
