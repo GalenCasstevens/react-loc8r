@@ -12,7 +12,7 @@ function App() {
 				<Navigation />
 				<Container>
 					<Routes>
-						<Route path="/" element={<Home />} />
+						<Route exact path="/" element={<Home />} />
 						<Route path="/locations/:locationId" element={<Details />} />
 						<Route path="/about" element={<About />} />
 					</Routes>
