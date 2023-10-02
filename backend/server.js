@@ -14,6 +14,9 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Routes
+app.use('/api/locations', require('./routes/locationRoutes'));
+
 if (process.env.NODE_ENV === 'production') {
 	// Set build folder as static
 	app.use(express.static(path.join(__dirname, '../frontend/build')));
@@ -23,9 +26,6 @@ if (process.env.NODE_ENV === 'production') {
 		res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
 	});
 }
-
-// Routes
-app.use('/api/locations', require('./routes/locationRoutes'));
 
 app.use(errorHandler);
 

@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://loc8r-mx4e.onrender.com';
 const API_URL = '/api/locations';
 
 // Get locations
