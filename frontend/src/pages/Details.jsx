@@ -32,7 +32,7 @@ function Details() {
 
 	useEffect(() => {
 		dispatch(getLocation(locationId));
-	}, []);
+	}, [dispatch, locationId]);
 
 	const getAverageRating = (reviews) => {
 		return Math.floor(

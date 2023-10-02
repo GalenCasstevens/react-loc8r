@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getLocations } from '../features/locations/locationSlice';
 import LocationListItem from '../components/LocationListItem';
