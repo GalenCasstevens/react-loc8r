@@ -1,5 +1,6 @@
 import axios from 'axios';
 
+const BASE_URL = 'https://loc8r-mx4e.onrender.com';
 const API_URL = '/api/locations';
 
 // Get locations
@@ -8,7 +9,7 @@ const getLocations = async () => {
 	const lat = 34.97988;
 	const maxDistance = 10000;
 	const response = await axios.get(
-		`${API_URL}?lng=${lng}&lat=${lat}&maxDistance=${maxDistance}`
+		`$${BASE_URL}${API_URL}?lng=${lng}&lat=${lat}&maxDistance=${maxDistance}`
 	);
 	return response.data;
 };
