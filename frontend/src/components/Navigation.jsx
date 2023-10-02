@@ -4,20 +4,11 @@ import { LinkContainer } from 'react-router-bootstrap';
 
 function Navigation() {
 	return (
-		<Navbar expand="lg" className="bg-body-tertiary">
+		<Navbar expand="lg" className="bg-body-tertiary" data-bs-theme="dark">
 			<LinkContainer to="/">
 				<Navbar.Brand to="/">Loc8r</Navbar.Brand>
 			</LinkContainer>
-			<button
-				type="button"
-				data-toggle="collapse"
-				data-target="#navbarMain"
-				className="navbar-toggler"
-			>
-				<div className="menu-icon"></div>
-				<div className="menu-icon"></div>
-				<div className="menu-icon"></div>
-			</button>
+			<Navbar.Toggle aria-controls="basic-navbar-nav" />
 			<Navbar.Collapse id="basic-navbar-nav">
 				<Nav className="me-auto">
 					<LinkContainer to="/about">
