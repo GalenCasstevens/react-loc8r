@@ -27,7 +27,8 @@ legend {
 }
 
 .navbar-brand,
-#basic-navbar-nav.collapse.show .nav-link {
+#basic-navbar-nav.collapse.show .nav-link,
+#basic-navbar-nav.collapsing .nav-link {
 	margin-left: 15px;
 }
 
