@@ -70,6 +70,12 @@ function Details() {
 		else return false;
 	};
 
+	const onCancel = () => {
+		setFormData({ author: '', rating: 5, reviewText: '' });
+		setFormVisible(false);
+		setFormError('');
+	};
+
 	if (location && location !== null) {
 		return (
 			<>
@@ -218,7 +224,11 @@ function Details() {
 													<Form.Group>
 														<Row className="float-end mb-3">
 															<Col className="float-end" md={12}>
-																<Button id="cancel-review-btn" variant="danger">
+																<Button
+																	id="cancel-review-btn"
+																	variant="danger"
+																	onClick={() => onCancel()}
+																>
 																	Cancel
 																</Button>
 																<Button
