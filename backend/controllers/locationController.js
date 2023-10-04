@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const MILES_CONVERSION_FACTOR = 1609.34;
 
 const Location = require('../models/locationModel');
 
@@ -45,7 +46,9 @@ const getLocationsByDistance = asyncHandler(async (req, res) => {
 				address: result.address,
 				rating: result.rating,
 				facilities: result.facilities,
-				distance: `${result.distance.calculated.toFixed()}`,
+				distance: `${(
+					result.distance.calculated / MILES_CONVERSION_FACTOR
+				).toFixed(1)}`,
 			};
 		});
 		res.status(200).json(locations);
