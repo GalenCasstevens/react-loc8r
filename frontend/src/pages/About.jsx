@@ -13,12 +13,10 @@ function About() {
 						bit of work done.
 					</p>
 					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed
-						lorem ac nisi dignissim accumsan. Nullam sit amet interdum magna.
-						Morbi quis faucibus nisi. Vestibulum mollis purus quis eros
-						adipiscing tristique. Proin posuere semper tellus, id placerat augue
-						dapibus ornare. Aenean leo metus, tempus in nisl eget, accumsan
-						interdum dui. Pellentesque sollicitudin volutpat ullamcorper.
+						This app was inspired from the book <em>Getting MEAN</em> by Simon
+						Holmes/Clive Harber. Originally the app was created with Angular and
+						the MEAN stack, but I thought it would be cool to rebuild it using
+						React and the MERN stack!
 					</p>
 				</Col>
 			</Row>

@@ -174,7 +174,6 @@ legend {
 span.badge.bg-primary {
 	background-color: #ad1d28 !important;
 	border-color: #911821 !important;
-	margin-top: 4px;
 }
 
 h4 a,
@@ -253,4 +252,18 @@ form {
 #submit-review-btn {
 	margin-left: 10px;
 	background-color: #1cd100;
+}
+
+footer {
+	margin-bottom: 64px;
+}
+
+@media screen and (max-width: 500px) {
+	.banner {
+		margin-top: 20px;
+	}
+
+	footer {
+		margin-bottom: 20px;
+	}
 }

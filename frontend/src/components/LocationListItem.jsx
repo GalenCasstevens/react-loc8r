@@ -17,7 +17,7 @@ function LocationListItem({ location }) {
 					style={{ color: '#aaa' }}
 				/>
 				<Badge pill className="float-end">
-					{location.distance}mi
+					{location.distance} mi
 				</Badge>
 			</h4>
 			<p className="address">{location.address}</p>
