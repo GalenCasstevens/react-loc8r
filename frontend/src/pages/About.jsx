@@ -14,9 +14,9 @@ function About() {
 					</p>
 					<p>
 						This app was inspired from the book <em>Getting MEAN</em> by Simon
-						Holmes/Clive Harber. Originally the app was created with Angular and
-						the MEAN stack, but I thought it would be cool to rebuild it using
-						React and the MERN stack!
+						Holmes/Clive Harber. Originally, the app was created with Angular
+						and the MEAN stack, but I thought it would be cool to rebuild it
+						using React and the MERN stack!
 					</p>
 				</Col>
 			</Row>
