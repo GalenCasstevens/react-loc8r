@@ -6,7 +6,7 @@ Loc8r is an app that helps people find nearby places with wifi to get work done.
 
 _It's important to note that the location list is hardcoded and is being pulled from a MongoDB cluster. However, if there was some type of API I could call to get nearby restaurants, the code is set up so that it would list them in order from closest to furthest away._
 
-This is a full stack web application that lets users find places nearby to work with wifi. The home page is a list of all of the near by locations.
+This is a full stack web application that lets users find places nearby to work with wifi. The home page is a list of all of the nearby locations.
 
 Also, there is a location details page that shows more information about the location along with a map that shows where the location is geographically. Additionally, the user can leave a review, and the rating will update to be the average rating from all of the reviews.
 
